@@ -6,6 +6,10 @@ int main(){
     Book book2("Crime and Punishment", "Fyodor Dostoevsky", 1866);
     Book book3("Master and Margarita", "Mikhail Bulgakov", 1967);
 
+    book1.print();
+    book2.print();
+    book3.print();
+
     std::cout << "\nFirst book info:\n";
     std::cout << "Title: " << book1.getTitle() << "\n";
     std::cout << "Author: " << book1.getAuthor() << "\n";
