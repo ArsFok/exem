@@ -1,18 +1,34 @@
 #include <iostream>
 #include "books.h"
 
-int main(){
-    Book book1("War and Peace", "Leo Tolstoy", 1869);
-    Book book2("Crime and Punishment", "Fyodor Dostoevsky", 1866);
-    Book book3("Master and Margarita", "Mikhail Bulgakov", 1967);
-
-    book1.print();
-    book2.print();
-    book3.print();
-
-    std::cout << "\nFirst book info:\n";
-    std::cout << "Title: " << book1.getTitle() << "\n";
-    std::cout << "Author: " << book1.getAuthor() << "\n";
-    std::cout << "Year: " << book1.getYear() << "\n";
+int main() {
+    DBBooks db;
+    
+    // Создаем книги
+    Book book1("Война и мир", "Лев Толстой", 1869);
+    Book book2("Анна Каренина", "Лев Толстой", 1877);
+    Book book3("Преступление и наказание", "Федор Достоевский", 1866);
+    Book book4("Идиот", "Федор Достоевский", 1869);
+    
+    // Добавляем книги в базу данных
+    std::cout << "Добавление книг:\n";
+    std::cout << "Книга 1: " << (db.addBook(book1) ? "успешно" : "не добавлена (дубликат)") << "\n";
+    std::cout << "Книга 2: " << (db.addBook(book2) ? "успешно" : "не добавлена (дубликат)") << "\n";
+    std::cout << "Книга 3: " << (db.addBook(book3) ? "успешно" : "не добавлена (дубликат)") << "\n";
+    std::cout << "Книга 4: " << (db.addBook(book4) ? "успешно" : "не добавлена (дубликат)") << "\n";
+    
+    // Пытаемся добавить дубликат
+    Book book5("Война и мир", "Лев Толстой", 1869);
+    std::cout << "Дубликат книги 1: " << (db.addBook(book5) ? "успешно" : "не добавлена (дубликат)") << "\n";
+    
+    // Сохраняем в файл
+    if (db.save("books.txt")) {
+        std::cout << "Данные успешно сохранены в файл books.txt\n";
+    } else {
+        std::cout << "Ошибка сохранения файла\n";
+    }
+    
+    std::cout << "Всего книг в базе: " << db.getBookCount() << "\n";
+    
     return 0;
 }

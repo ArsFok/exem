@@ -11,19 +11,26 @@ public:
     unsigned publishYear;
 
     Book();
-    Book(std::string new_title, std::string new_author, unsigned new_publishYear);
-    void print();
-    std::string getTitle();
-    std::string getAuthor();
-    unsigned getYear();
+    Book(const std::string& title, const std::string& author, unsigned year);
 
+    std::string getTitle() const;
+    std::string getAuthor() const;
+    unsigned getYear() const;
+
+    friend bool operator==(const Book& lhs, const Book& rhs);
     ~Book();
 };
-class DBBooks : public Book{
-public:
-    DBBooks(std::string title, std::string author, unsigned publishYear);
+bool operator==(const Book& lhs, const Book& rhs);
+
+class DBBooks{
 private:
     std::vector<Book> books;
+public:
+    DBBooks();
+    bool addBook(const Book& book);
+    bool save(const std::string& fileName);
+
+    size_t getBookCount() const;
 };
 
 #endif

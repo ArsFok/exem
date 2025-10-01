@@ -13,4 +13,4 @@ books.o: books.cpp books.h
 	g++ -Wall -Wextra -c books.cpp -o books.o
 
 clean:
-	rm -rf book
+	rm -rf book *.txt
