@@ -41,7 +41,7 @@ bool DBBooks::save(const std::string& fileName){
     }
     std::vector<std::string> authors;
     for(const auto& book : books){
-        if(std::find(authors.begin(), authors.end(), book.getAuthor())== authors.end()){
+        if(std::find(authors.begin(), authors.end(), book.getAuthor()) == authors.end()){
             authors.push_back(book.getAuthor());
         }
     }

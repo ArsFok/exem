@@ -16,7 +16,7 @@ public:
     std::string getTitle() const;
     std::string getAuthor() const;
     unsigned getYear() const;
-
+    
     friend bool operator==(const Book& lhs, const Book& rhs);
     ~Book();
 };
