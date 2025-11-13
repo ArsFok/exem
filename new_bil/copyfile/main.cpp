@@ -34,7 +34,7 @@ int main(int argc, char* argv[]){
             char response;
             std::cout << "Ты хочешь перезаписать файл? (Y|N)";
             std::cin >> response;
-            std::cin.ignore(); //очистка буфера
+            std::cin.ignore(); //очистка буфера, чтобы потом можно было спокойно ввести новую информацию
 
             if(response == 'y' || response == 'Y'){
                 std::remove(destination);
