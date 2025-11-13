@@ -14,8 +14,6 @@ private:
             if(*ref_count == 0){
                 delete ptr;
                 delete ref_count;
-                ptr = nullptr;
-                ref_count = nullptr;
             }
         }
     }
@@ -28,12 +26,12 @@ public:
     }
     //Конструктор копирования
     SmartPtr(const SmartPtr& other) : ptr(other.ptr), ref_count(other.ref_count){
-        if(ref_count && ptr){
+        if(ref_count){
             (*ref_count)++;
         }
     }
     //Конструктор перемещения
-    SmartPtr(SmartPtr& other) noexcept : ptr(other.ptr), ref_count(other.ref_count){
+    SmartPtr(SmartPtr&& other) noexcept : ptr(other.ptr), ref_count(other.ref_count){
         other.ptr = nullptr;
         other.ref_count = nullptr;
     }
@@ -46,13 +44,13 @@ public:
             release();
             ptr = other.ptr;
             ref_count = other.ref_count;
-            if(ref_count && ptr){
+            if(ref_count){
                 (*ref_count)++;
             }
         }
         return *this;
     }
-    SmartPtr& operator=(SmartPtr& other) noexcept{
+    SmartPtr& operator=(SmartPtr&& other) noexcept{
         if(this != &other){
             release();
             ptr = other.ptr;
