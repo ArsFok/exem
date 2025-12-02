@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iterator>
 
+<<<<<<< Updated upstream
 // Глобальная переменная для хранения максимального элемента
 int global_max;
 
@@ -11,6 +12,8 @@ int addWithMax(int element) {
     return element + global_max;
 }
 
+=======
+>>>>>>> Stashed changes
 int main() {
     std::vector<int> numbers = {1, 3, 5, 2, 4};
     std::vector<int> result(numbers.size());
@@ -21,6 +24,7 @@ int main() {
     }
     std::cout << std::endl;
     
+<<<<<<< Updated upstream
     // Находим максимальный элемент
     global_max = *std::max_element(numbers.begin(), numbers.end());
     
@@ -28,6 +32,17 @@ int main() {
     
     // Используем std::transform с обычной функцией
     std::transform(numbers.begin(), numbers.end(), result.begin(), addWithMax);
+=======
+    // Используем std::transform с лямбда-функцией
+    std::transform(numbers.begin(), numbers.end(), result.begin(),
+        // Лямбда-функция, захватывающая вектор numbers по ссылке
+        [&numbers](int element) {
+            // Находим максимальный элемент в векторе на момент вызова
+            int max_element = *std::max_element(numbers.begin(), numbers.end());
+            // Складываем текущий элемент с максимальным
+            return element + max_element;
+        });
+>>>>>>> Stashed changes
     
     std::cout << "Результат (элемент + максимальный элемент вектора): ";
     for (const auto& num : result) {
